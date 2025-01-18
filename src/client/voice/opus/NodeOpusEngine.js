@@ -5,6 +5,7 @@ class NodeOpusEngine extends OpusEngine {
     super(player);
     const opus = require('node-opus');
     this.encoder = new opus.OpusEncoder(this.samplingRate, this.channels);
+    this.encoder_mono = new opus.OpusEncoder(this.samplingRate, 1);
     super.init();
   }
 
@@ -27,7 +28,7 @@ class NodeOpusEngine extends OpusEngine {
 
   decode(buffer) {
     super.decode(buffer);
-    return this.encoder.decode(buffer, 1920);
+    return this.encoder_mono.decode(buffer, 1920);
   }
 }
 
